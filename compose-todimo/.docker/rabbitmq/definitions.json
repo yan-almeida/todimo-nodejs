@@ -1,0 +1,29 @@
+{
+  "rabbit_version": "3.8.3",
+  "users": [
+    {
+      "name": "admin@todimo",
+      "password": "admin@todimo",
+      "tags": "administrator"
+    }
+  ],
+  "vhosts": [
+    {
+      "name": "/"
+    }
+  ],
+  "permissions": [
+    {
+      "user": "admin@todimo",
+      "vhost": "/",
+      "configure": ".*",
+      "write": ".*",
+      "read": ".*"
+    }
+  ],
+  "parameters": [],
+  "policies": [],
+  "queues": [],
+  "exchanges": [],
+  "bindings": []
+}

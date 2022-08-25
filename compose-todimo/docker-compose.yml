@@ -1,0 +1,41 @@
+version: '3.7' # versão do compose que conversa com a engine do Docker
+
+volumes:
+  db_data:
+  rabbitmq_data:
+
+services:
+  db:
+    build: .docker/postgres
+    container_name: todimo-db
+    restart: always
+    tty: true
+    networks:
+      - todimo
+    volumes:
+      - ./.docker/postgres/db_data:/var/lib/postgresql/data
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_DB: 'ecommerce'
+      POSTGRES_USER: 'todimo'
+      POSTGRES_PASSWORD: 'todimo'
+
+  rabbitmq:
+    image: rabbitmq:3.8.3-management
+    container_name: rabbitmq_todimo
+    restart: always
+    hostname: rabbitmq
+    networks:
+      - todimo
+    ports:
+      - 5672:5672
+      - 15672:15672
+      - 15671:15671
+    volumes:
+      - rabbitmq_data:/var/lib/rabbitmq/
+      - ./.docker/rabbitmq/definitions.json:/etc/rabbitmq/definitions.json
+      - ./.docker/rabbitmq/rabbitmq.conf:/etc/rabbitmq/rabbitmq.conf
+
+networks:
+  todimo:
