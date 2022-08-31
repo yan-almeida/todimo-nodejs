@@ -6,13 +6,13 @@
   
   // type - tipo
 
-  type Atendimento = 'urgente' | 'expresso' | 'normal'
+  type AtendimentoEnum = 'urgente' | 'expresso' | 'normal'
 
   type Pessoa = {
     nome: string
     idade: number
     telefone: string
-    atendimento: Atendimento
+    atendimento: AtendimentoEnum
   }
 
   const pessoa: Pessoa = {
